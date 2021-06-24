@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 @main
 struct ExpenseTrackerApp: App {
-    let persistenceController = PersistenceController.shared
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate;
+    let sheetManager: PartialSheetManager = PartialSheetManager()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            MainView()
+                
+                .environmentObject(sheetManager)
         }
     }
 }
