@@ -20,9 +20,11 @@ struct DailyExpenseView: View {
                     }.padding(.top, 50)
                     
                     HStack{
-                        Text("Month \(expensesViewModel.monthString)")
-                        Text("Month Expense $XXX")
+                        Text("\(expensesViewModel.monthString)")
+                        Spacer()
+                        Text(String(format:"Total: $%.2f",expensesViewModel.monthTotal))
                     }.padding()
+                    .padding(.horizontal, 20)
                     .frame(maxWidth:.infinity)
                     
                     //Expense List - based on date and the Expenses in That date

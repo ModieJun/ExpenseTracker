@@ -17,6 +17,7 @@ class ExpenseViewModel: NSObject, ObservableObject {
             //Change in the expenses for this month
             //update the expenses for Month
             self.computeExpensesByEachDay()
+            self.computeMonthTotal()
         }
     }
     
@@ -25,6 +26,8 @@ class ExpenseViewModel: NSObject, ObservableObject {
             NSLog("Expenses View model: didSet new expnenses for selected month")
         }
     }
+    
+    @Published var monthTotal:Double = 0.00
     
     var date:Date{
         didSet{
@@ -90,6 +93,15 @@ class ExpenseViewModel: NSObject, ObservableObject {
             }
         })
         self.expensesForMonth = filt
+    }
+    
+    private func computeMonthTotal(){
+        var total = 0.00;
+        self.expenses.forEach({
+            ele in
+            total += ele.amount
+        })
+        self.monthTotal = total
     }
 }
 
