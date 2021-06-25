@@ -41,12 +41,8 @@ class ExpenseViewModel: NSObject, ObservableObject {
     
     private let expensesFetchController:NSFetchedResultsController<NSFetchRequestResult>
     
-    init(preview:Bool = false,for date:Date = Date()){
-        if preview{
-            self.dataContainer = DataContainer.preview
-        }else{
-            self.dataContainer = DataContainer.shared
-        }
+    init(for date:Date = Date()){
+        self.dataContainer = DataContainer.shared
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
         let sortDesript = NSSortDescriptor(key: "date", ascending: false)
@@ -109,6 +105,23 @@ extension ExpenseViewModel: NSFetchedResultsControllerDelegate{
 extension ExpenseViewModel {
     //Functions that are invoked by the viewmodel to Modify and update local data 
     
+    /**
+            Function is used to delete expenses from self.expensesForMonth<Date,[Expense]>
+            based on provided date as key for dict , delete the expense at that specific index offset
+     */
+    func deleteExpense(at key:Date, offset:IndexSet){
+        let values = self.expensesForMonth[key]
+        for index in offset{
+            let del = values![index] as NSManagedObject
+            print("Index \(index) , Expense: \(del)")
+            self.dataContainer.managedObjectContext.delete(del)
+            self.saveContext()
+        }
+    }
+    
+    /**
+            Used to remove element straight from all the expenses queried this month.
+     */
     func removeExpenseAt(offset:IndexSet){
         for index in offset{
             let expenseDel = self.expenses[index]
@@ -133,5 +146,9 @@ extension ExpenseViewModel {
     
     var monthString:String{
         return self.date.monthString
+    }
+    
+    var daysWithExpenses:Array<Date>{
+        return self.expensesForMonth.keys.sorted(by: >)
     }
 }

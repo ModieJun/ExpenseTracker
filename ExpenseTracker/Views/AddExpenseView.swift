@@ -33,14 +33,7 @@ struct AddExpenseView: View {
                                     })
                                 }
                                 label:{
-                                    ZStack{
-                                        Circle()
-                                            .foregroundColor( .white)
-                                            .frame(width: 55, height: 55)
-                                            .shadow(radius: 1 )
-                                        Text(ele.name!)
-                                            .foregroundColor(.gray)
-                                    }.accentColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                    CategorySelection(categoryName: ele.name!, selected: selectedCategory?.name?.elementsEqual(ele.name!) ?? false )
                                 }
                         })
                     }).padding(.top,25)

@@ -13,10 +13,9 @@ struct MainView: View {
     
     var body: some View{
         TabView{
-            DailyExpenseView(expensesViewModel: ExpenseViewModel())
+            DailyExpenseView()
             .tabItem {
                 Label("Daily", systemImage: "house")
-                    .foregroundColor(.red)
             }
             
             SummaryExpenseView()

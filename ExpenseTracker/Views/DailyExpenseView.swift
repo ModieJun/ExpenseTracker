@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DailyExpenseView: View {
-    @StateObject var expensesViewModel:ExpenseViewModel
+    @StateObject var expensesViewModel:ExpenseViewModel = ExpenseViewModel()
 
     var body: some View {
         GeometryReader{ geo in
@@ -16,20 +16,31 @@ struct DailyExpenseView: View {
                 VStack{
                     HStack{
                         Text("Daily Expense")
-                            .font(.title)
+                            .font(.title2)
                     }.padding(.top, 50)
                     
                     HStack{
                         Text("Month \(expensesViewModel.monthString)")
                         Text("Month Expense $XXX")
                     }.padding()
+                    .frame(maxWidth:.infinity)
                     
                     //Expense List - based on date and the Expenses in That date
                     List{
-                        ForEach(expensesViewModel.expenses, id: \.self, content: {ele in
-                            ExpenseRecord(expense: ele)
-                        })
-                        .onDelete(perform: expensesViewModel.removeExpenseAt)
+                        ForEach(Array(expensesViewModel.daysWithExpenses),id:\.self){ key in
+                            
+                            Section(header:Text(key,style: .date).font(.headline)
+                                    ,content: {
+                                ForEach(expensesViewModel.expensesForMonth[key]!,id:\.self){ exp in
+                                    ExpenseRecord(expense: exp)
+                                    //TODO implement swipe to delete
+                                    
+                                }//For each expenses
+                                .onDelete(perform: { indexSet in
+                                    self.expensesViewModel.deleteExpense(at: key, offset: indexSet)
+                                })
+                            })//Section
+                        }//For each key
                     }
                 }
             }
@@ -41,6 +52,6 @@ struct DailyExpenseView: View {
 
 struct DailyExpenseView_Previews: PreviewProvider {
     static var previews: some View {
-        DailyExpenseView(expensesViewModel: ExpenseViewModel(preview:true))
+        DailyExpenseView()
     }
 }

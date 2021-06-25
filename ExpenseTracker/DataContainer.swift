@@ -14,20 +14,6 @@ final class DataContainer {
     
     static var preview: DataContainer = {
         let result = DataContainer(inMememory: true)
-        let viewcontext = result.container.viewContext
-        for _ in 0..<10 {
-            let newExpense = Expense(context: viewcontext)
-            newExpense.amount = 10
-            newExpense.date = Date()
-        }
-        
-        do{
-            try viewcontext.save()
-        }catch{
-            let nserror = error as NSError
-            fatalError("Error: \(nserror)")
-        }
-        
         return result
     }()
     

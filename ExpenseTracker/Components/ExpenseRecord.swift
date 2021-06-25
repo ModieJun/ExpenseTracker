@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ExpenseRecord: View {
-//    let category:String; TODO
     let expense:Expense;
+    
     
     var body: some View {
             Button(action: {
@@ -19,7 +19,6 @@ struct ExpenseRecord: View {
                     Image(systemName: "drop.fill")
                     Text("\((expense.category != nil) ? expense.category!.name! : "nil")")
                         .font(.body)
-                    Text(expense.date!,style: .date)
                         
                     Spacer()
                     Text("$\(String(format: "%.2f", expense.amount))").font(.body)
