@@ -29,6 +29,7 @@
 		FAF8359C2684531400751431 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8359B2684531400751431 /* AddExpenseViewModel.swift */; };
 		FAF835B22684611F00751431 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = FAF835B12684611F00751431 /* PartialSheet */; };
 		FAF835B72684C38600751431 /* CategorySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835B62684C38600751431 /* CategorySelection.swift */; };
+		FAF835BA26857D2100751431 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835B926857D2100751431 /* MonthYearPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		FAF835A526845DA700751431 /* ExpenseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerTests.swift; sourceTree = "<group>"; };
 		FAF835A726845DA700751431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAF835B62684C38600751431 /* CategorySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelection.swift; sourceTree = "<group>"; };
+		FAF835B926857D2100751431 /* MonthYearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				FA06B01926764671002B7D07 /* ExpenseRecord.swift */,
 				FA29DB65267D92A100BFA26A /* ExpenseList.swift */,
 				FAF835B62684C38600751431 /* CategorySelection.swift */,
+				FAF835B926857D2100751431 /* MonthYearPicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				FA1739E82674A26E00C73416 /* AddExpenseView.swift in Sources */,
 				FA1739ED2674A35900C73416 /* ExpenseTracker.xcdatamodeld in Sources */,
 				FA29DB5C267C761600BFA26A /* CategoryService.swift in Sources */,
+				FAF835BA26857D2100751431 /* MonthYearPicker.swift in Sources */,
 				FAF835B72684C38600751431 /* CategorySelection.swift in Sources */,
 				FA29DB62267CCF9800BFA26A /* AppDelegate.swift in Sources */,
 				FA1739E426749FAF00C73416 /* SummaryExpenseView.swift in Sources */,
