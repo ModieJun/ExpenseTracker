@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Date{
     
@@ -57,5 +58,15 @@ extension Date{
         default:
             return nil
         }
+    }
+}
+
+extension Calendar{
+    func startOfMonth(_ date: Date) -> Date {
+        return self.date(from: self.dateComponents([.year, .month], from: date))!
+    }
+
+    func endOfMonth(_ date: Date) -> Date {
+        return self.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth(date))!
     }
 }

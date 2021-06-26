@@ -32,6 +32,9 @@ class ExpenseViewModel: NSObject, ObservableObject {
     var date:Date{
         didSet{
             self.setMonthBeginEndDate()
+            //TODO: AFter viewmodel Date reset then fetch the dates
+            print("Date of view model changed - Reload the data ")
+            self.reloadData()
         }
     }
 
@@ -46,32 +49,49 @@ class ExpenseViewModel: NSObject, ObservableObject {
     
     init(for date:Date = Date()){
         self.dataContainer = DataContainer.shared
+        self.date = date;
+        //Note: init begin and end date since willSet is not called on initial setting of date
+        self.dateBegin = Calendar.current.startOfMonth(date)
+        self.dateEnd = Calendar.current.endOfMonth(date)
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
         let sortDesript = NSSortDescriptor(key: "date", ascending: false)
         request.sortDescriptors = [sortDesript]
-
+        
         self.expensesFetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.dataContainer.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         
-        self.date = date;
         super.init()
         self.setupFetchController()
+        self.reloadData()
     }
     
+    /**
+        Set the beginning date and End Date for the current set DATE
+     */
     private func setMonthBeginEndDate(){
-        //Calc the date for the begining of the month
-        let comp: DateComponents = Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self.date))
-        self.dateBegin =  Calendar.current.date(from: comp)!
+        //Calc the date starting point of the month
+        self.dateBegin =  Calendar.current.startOfMonth(self.date)
         
-        //Calc the end for the end of the month
-        var comp2 = DateComponents()
-        comp2.month = -1
-        comp2.day = -1
-        self.dateEnd =  Calendar.current.date(byAdding: comp2, to: self.dateBegin!)!
+        //Calc the end point of the month
+        self.dateEnd =  Calendar.current.endOfMonth(self.date)
     }
     
     private func setupFetchController(){
         self.expensesFetchController.delegate = self
+    }
+    
+    private func saveContext(){
+        self.dataContainer.saveContext()
+    }
+    
+    /**
+        Perform reload of data when date is changed and on initialization 
+     */
+    private func reloadData(){
+        print("Predicate beginDate \(dateBegin!) & endDate \(dateEnd!) ")
+        let predicate  = NSPredicate(format: "date > %@ AND date <= %@", self.dateBegin! as CVarArg, self.dateEnd! as CVarArg  )
+        self.expensesFetchController.fetchRequest.predicate = predicate
+        
         do {
             try expensesFetchController.performFetch()
             guard let fetchedExpenses = expensesFetchController.fetchedObjects as? [Expense] else { return }
@@ -81,10 +101,9 @@ class ExpenseViewModel: NSObject, ObservableObject {
         }
     }
     
-    private func saveContext(){
-        self.dataContainer.saveContext()
-    }
-    
+    /**
+        Compute  and store expenses in [Date: [Expnese] ,] Dictionary format
+     */
     private func computeExpensesByEachDay(){
         var filt:Dictionary<Date,[Expense]> = Dictionary()
         self.expenses.forEach({exp in
@@ -95,6 +114,9 @@ class ExpenseViewModel: NSObject, ObservableObject {
         self.expensesForMonth = filt
     }
     
+    /**
+        Calculte total expenses in self.Expenses (Should be the total for the current month)
+     */
     private func computeMonthTotal(){
         var total = 0.00;
         self.expenses.forEach({
@@ -160,7 +182,21 @@ extension ExpenseViewModel {
         return self.date.monthString
     }
     
-    var daysWithExpenses:Array<Date>{
+    var datesWithExpenses:Array<Date>{
         return self.expensesForMonth.keys.sorted(by: >)
+    }
+    
+    /// Provided the date,calculates the subtotal of expense for the date using self.expensesForMonth
+    /// - Parameter date: date to be used to calculate the subtotal for expenses amount
+    /// - Returns: Subtotal value Double
+    func subtotalForDate(date:Date)->Double{
+        var subtotal = 0.00
+        let exp = self.expensesForMonth[date]
+        exp?.forEach({
+            ele in
+            subtotal += ele.amount
+        })
+        
+        return subtotal
     }
 }
