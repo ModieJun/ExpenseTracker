@@ -69,8 +69,6 @@ struct DailyExpenseView: View {
                                     ,content: {
                                 ForEach(expensesViewModel.expensesForMonth[key]!,id:\.self){ exp in
                                     ExpenseRecord(expense: exp)
-                                    //TODO implement swipe to delete
-                                    
                                 }//For each expenses
                                 .onDelete(perform: { indexSet in
                                     self.expensesViewModel.deleteExpense(at: key, offset: indexSet)

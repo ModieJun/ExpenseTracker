@@ -35,58 +35,38 @@ struct AddExpenseView: View {
                                 label:{
                                     CategorySelection(categoryName: ele.name!, selected: selectedCategory?.name?.elementsEqual(ele.name!) ?? false )
                                 }
-                        })
-                    }).padding(.top,25)
-                }.padding(.horizontal, 20)
+                        }) //For Each
+                    }).padding(.top,25) // Lazy Grid
+                }//ScrollView
+                .padding(.horizontal, 20)
                 
                 //MARK: Category selected
                 if(self.isCategorySelected){
+                    Spacer()
                     DatePickerSheet(date: $addExpenseViewModel.date)
-                    VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing:nil){
+                    VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing:0){
                         HStack{
                             Text("\((addExpenseViewModel.category?.name)!)")
-                                .frame(maxWidth: .infinity)
+                                .frame(maxWidth: .infinity,alignment: .center)
                                 .font(.body)
                             Text("$\(addExpenseViewModel.amount)")
-                                .font(.title)
-                                .frame(maxWidth:.infinity,alignment: .leading)
-                                .padding(.horizontal,50)
-                            Button{
-                                //Add to the ViewModelData
-                                self.addExpenseViewModel.addExpense()
-                                
-                                self.isToastPresented.toggle()
-                                
-                                //Delay in adding Expense Record
-                                DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
-                                    withAnimation{
-                                        self.isToastPresented.toggle()
-                                        self.isPresented.toggle()
-                                    }
-                                })
-                            } label: {
-                                Image(systemName: "plus")
-                            }
-                            .padding()
-                            .padding(.horizontal,20)
-                            .foregroundColor(.white)
-                            .background(Color.red)
+                                .frame(maxWidth:.infinity,alignment: .center)
                         }.frame(maxWidth: .infinity)
-                        InputKeyboard(amount: $addExpenseViewModel.amount)
-                            .padding(.bottom,20)
+                        .padding()
+                        InputKeyboard(amount: $addExpenseViewModel.amount,action: self.addExpense)
                     }.toast(isPresenting: self.$isToastPresented, alert: {
                         AlertToast(type: .loading, title: "Adding Expense....")
                     })
-                }
+                } // Category Selected
                 
-            }
-            .ignoresSafeArea(.container, edges: /*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
+            }//VStack
+            .ignoresSafeArea(.container, edges: .bottom)
             .navigationBarItems(trailing:Button("Close", action: {print("Close");self.isPresented.toggle()})
             )
             .navigationTitle("Add Expense")
             .navigationBarTitleDisplayMode(.inline)
-            
-        }.addPartialSheet()
+        }//NavigationView
+        .addPartialSheet()
     }
     
     func select(category:Category) -> Void{
@@ -100,6 +80,20 @@ struct AddExpenseView: View {
             })
         }
         addExpenseViewModel.category = category //set selected to change view model
+    }
+    
+    func addExpense() -> Void {
+        self.addExpenseViewModel.addExpense()
+        
+        self.isToastPresented.toggle()
+        
+        //Delay in adding Expense Record
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
+            withAnimation{
+                self.isToastPresented.toggle()
+                self.isPresented.toggle()
+            }
+        })
     }
 }
 
