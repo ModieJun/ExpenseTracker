@@ -59,6 +59,34 @@ extension Date{
             return nil
         }
     }
+    
+    /// Compute and returns the date for each week in this current month in an array format
+    ///     Eg: If ther are 4 days in the first week Function should return
+    ///         [[1, 2, 3, 4], [5,6,7,8,9,10,11,]]
+    ///     Function assumes that the start of the week is sunday (Gregorian)
+    /// - Returns: Array of Array of Dates -
+    ///         - First nest array stores one array of each week
+    ///         - Second the Date for that week
+    func datesForEachWeekInMonth()->Array<Array<Date>>{
+        return []
+    }
+    
+    /// Gets the start abd end date of the week for the current date.
+    /// - Returns: { start : Date , end: Date }
+    ///     - Key: 'start' , 'end'
+    func startAndEndOfWeek()->Dictionary<String,Date>{
+        return Dictionary()
+    }
+}
+
+extension Calendar{
+    func startOfMonth(_ date: Date) -> Date {
+        return self.date(from: self.dateComponents([.year, .month], from: date))!
+    }
+
+    func endOfMonth(_ date: Date) -> Date {
+        return self.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth(date))!
+    }
 }
 
 extension Calendar{

@@ -30,6 +30,7 @@
 		FAF835B22684611F00751431 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = FAF835B12684611F00751431 /* PartialSheet */; };
 		FAF835B72684C38600751431 /* CategorySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835B62684C38600751431 /* CategorySelection.swift */; };
 		FAF835BA26857D2100751431 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835B926857D2100751431 /* MonthYearPicker.swift */; };
+		FAF835BD26870AA800751431 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835BC26870AA600751431 /* SummaryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,10 @@
 		FAF835A726845DA700751431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAF835B62684C38600751431 /* CategorySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelection.swift; sourceTree = "<group>"; };
 		FAF835B926857D2100751431 /* MonthYearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPicker.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		FAF835BC26870AA600751431 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
+>>>>>>> summary-page
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +147,7 @@
 				FA06B01F26765844002B7D07 /* ExpensesViewModel.swift */,
 				FA29DB5E267C7F7D00BFA26A /* CategoryViewModel.swift */,
 				FAF8359B2684531400751431 /* AddExpenseViewModel.swift */,
+				FAF835BC26870AA600751431 /* SummaryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -272,6 +278,7 @@
 				FA1739E026749FA500C73416 /* DailyExpenseView.swift in Sources */,
 				FA1739C726749D7900C73416 /* MainView.swift in Sources */,
 				FA756B5F26771E4C001A9E7C /* ExpenseService.swift in Sources */,
+				FAF835BD26870AA800751431 /* SummaryViewModel.swift in Sources */,
 				FA1739C526749D7900C73416 /* ExpenseTrackerApp.swift in Sources */,
 				FA29DB5F267C7F7D00BFA26A /* CategoryViewModel.swift in Sources */,
 				FAF8359C2684531400751431 /* AddExpenseViewModel.swift in Sources */,
