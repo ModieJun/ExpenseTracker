@@ -34,13 +34,15 @@
 		FAF835D9268A0CD900751431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAF835D8268A0CD900751431 /* Assets.xcassets */; };
 		FAF835E0268A0CD900751431 /* ExpenseTracker Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAF835DF268A0CD900751431 /* ExpenseTracker Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FAF835E5268A0CD900751431 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835E4268A0CD900751431 /* ExpenseTrackerApp.swift */; };
-		FAF835E7268A0CD900751431 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835E6268A0CD900751431 /* ContentView.swift */; };
+		FAF835E7268A0CD900751431 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835E6268A0CD900751431 /* MainView.swift */; };
 		FAF835E9268A0CD900751431 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835E8268A0CD900751431 /* NotificationController.swift */; };
 		FAF835EB268A0CD900751431 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835EA268A0CD900751431 /* NotificationView.swift */; };
 		FAF835ED268A0CD900751431 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835EC268A0CD900751431 /* ComplicationController.swift */; };
 		FAF835EF268A0CDA00751431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAF835EE268A0CDA00751431 /* Assets.xcassets */; };
 		FAF835F2268A0CDA00751431 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAF835F1268A0CDA00751431 /* Preview Assets.xcassets */; };
 		FAF835F7268A0CDC00751431 /* ExpenseTracker Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FAF835D6268A0CD600751431 /* ExpenseTracker Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FAF83611268A10F200751431 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF83610268A10F200751431 /* AddExpenseView.swift */; };
+		FAF83616268A111D00751431 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF83615268A111D00751431 /* SummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,7 +119,7 @@
 		FAF835DA268A0CD900751431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAF835DF268A0CD900751431 /* ExpenseTracker Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ExpenseTracker Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF835E4268A0CD900751431 /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
-		FAF835E6268A0CD900751431 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FAF835E6268A0CD900751431 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FAF835E8268A0CD900751431 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		FAF835EA268A0CD900751431 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		FAF835EC268A0CD900751431 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,8 @@
 		FAF835F1268A0CDA00751431 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FAF835F3268A0CDA00751431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAF835F4268A0CDA00751431 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		FAF83610268A10F200751431 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		FAF83615268A111D00751431 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,7 +282,7 @@
 				FAF83604268A0DAA00751431 /* ViewModel */,
 				FAF83603268A0DA300751431 /* View */,
 				FAF835E4268A0CD900751431 /* ExpenseTrackerApp.swift */,
-				FAF835E6268A0CD900751431 /* ContentView.swift */,
+				FAF835E6268A0CD900751431 /* MainView.swift */,
 				FAF835E8268A0CD900751431 /* NotificationController.swift */,
 				FAF835EA268A0CD900751431 /* NotificationView.swift */,
 				FAF835EC268A0CD900751431 /* ComplicationController.swift */,
@@ -301,6 +305,8 @@
 		FAF83603268A0DA300751431 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FAF83610268A10F200751431 /* AddExpenseView.swift */,
+				FAF83615268A111D00751431 /* SummaryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -478,8 +484,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF835E9268A0CD900751431 /* NotificationController.swift in Sources */,
-				FAF835E7268A0CD900751431 /* ContentView.swift in Sources */,
+				FAF83616268A111D00751431 /* SummaryView.swift in Sources */,
+				FAF835E7268A0CD900751431 /* MainView.swift in Sources */,
 				FAF835ED268A0CD900751431 /* ComplicationController.swift in Sources */,
+				FAF83611268A10F200751431 /* AddExpenseView.swift in Sources */,
 				FAF835E5268A0CD900751431 /* ExpenseTrackerApp.swift in Sources */,
 				FAF835EB268A0CD900751431 /* NotificationView.swift in Sources */,
 			);

@@ -42,9 +42,8 @@ struct AddExpenseView: View {
                 
                 //MARK: Category selected
                 if(self.isCategorySelected){
-                    Spacer()
-                    DatePickerSheet(date: $addExpenseViewModel.date)
-                    VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing:0){
+                    VStack(alignment: .trailing, spacing:0){
+                        DatePickerSheet(date: $addExpenseViewModel.date)
                         HStack{
                             Text("\((addExpenseViewModel.category?.name)!)")
                                 .frame(maxWidth: .infinity,alignment: .center)
@@ -66,6 +65,7 @@ struct AddExpenseView: View {
             .navigationTitle("Add Expense")
             .navigationBarTitleDisplayMode(.inline)
         }//NavigationView
+        .ignoresSafeArea(.container, edges: .bottom)
         .addPartialSheet()
     }
     
