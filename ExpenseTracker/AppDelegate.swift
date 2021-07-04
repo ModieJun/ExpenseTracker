@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AppDelegate: NSObject,UIApplicationDelegate  {
+class AppDelegate: UIResponder,UIApplicationDelegate  {
     func applicationDidFinishLaunching(_ application: UIApplication) {
         print("App Launched with options .... please initalize things here")
         

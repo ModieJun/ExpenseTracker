@@ -10,7 +10,7 @@ import Foundation
 
 struct InputKeyboard: View {
     let height:CGFloat = 50
-    @Binding var amount:String;
+    @Binding var amount:String; //TODO CHANGE TO VIEW MODEL 
     let action: ()  -> Void
     
     var body: some View {
@@ -62,6 +62,7 @@ struct InputKeyboard: View {
                 }//H Stack
             }// VStack
             .accentColor(.gray) //Changes foreground color
+            .frame(minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50*4, maxHeight: 50*4, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         }
     }
 }

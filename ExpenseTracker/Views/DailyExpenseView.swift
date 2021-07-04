@@ -18,15 +18,9 @@ struct DailyExpenseView: View {
             self.reloadData()
         }
     }
+    @State private var showOverlay = false
     
     var body: some View {
-        //Hack around to invoke didSet for datePicker
-        let dateBinding = Binding(
-            get: { self.selectedMonth },
-            set: {
-                self.selectedMonth = $0
-            }
-        )
         
         return GeometryReader{ geo in
             ZStack(alignment:.bottom){
@@ -40,20 +34,24 @@ struct DailyExpenseView: View {
                         Button{
                             print("present month Picker")
                             self.isMonthPickerPresented.toggle()
+//                            self.showOverlay.toggle()
                         }
                         label: {
                             HStack(alignment:.center){
-                                Text(selectedMonth,style:.date)
+                                Text("\(selectedMonth.monthString)  \(selectedMonth.year)")
                                     .font(.title2)
                                 Image(systemName:"arrowtriangle.down.fill")
                             }
-                        }
+                        }//Month year button
                         .sheet(isPresented: $isMonthPickerPresented, content: {
                             //TODO: change to selected year and month picker
-                            DatePicker("Selected Month and Year", selection: dateBinding,in: ...Date() , displayedComponents: [.date])
-                                .datePickerStyle(WheelDatePickerStyle())
-                                
-                        }).foregroundColor(.black)
+                            MonthYearPickerView(date: self.selectedMonth , action: {
+                                month, year  in
+                                self.selectedMonth = Date.dateFromYearMonth(components: (month,year))!
+                                self.isMonthPickerPresented.toggle()
+                            })
+                        })
+                        .foregroundColor(.black)
                         
                         Spacer()
                         Text(String(format:"Total: $%.2f",expensesViewModel.monthTotal))
@@ -82,6 +80,24 @@ struct DailyExpenseView: View {
             .padding(.bottom,100)
         }
         .edgesIgnoringSafeArea(.all)
+//        .blur(radius: showOverlay ? 6 : 0)
+//        .overlay(
+//            ZStack {
+//                if self.showOverlay {
+//                    Color.black.opacity(0.25)
+//                        .edgesIgnoringSafeArea(.all)
+//                        .onTapGesture {
+//                            withAnimation {
+//                                self.showOverlay.toggle()
+//                            }
+//                        }
+//                    MonthYearPickerView(date: self.selectedMonth, action: {
+//                        month, year  in
+//                        self.selectedMonth = Date.dateFromYearMonth(components: (month,year))!
+//                        self.showOverlay.toggle()
+//                    })
+//                }
+//            })
     }
     
     private func reloadData(){

@@ -30,7 +30,11 @@ extension Date{
 
     func monthString(for date:Date)->String?{
         let month = monthInt(for: date)
-        switch month {
+        return monthFromInt(int: month)
+    }
+    
+    func monthFromInt(int:Int)->String?{
+        switch int {
         case 1:
             return "JAN"
         case 2:
@@ -58,6 +62,44 @@ extension Date{
         default:
             return nil
         }
+    }
+    
+    var year:String{
+        let comp1 = Calendar.current.dateComponents([.year], from: self)
+        return String(comp1.year!)
+    }
+    
+    func yearAndMonthFrom(start d1:Date, end d2:Date){
+        
+    }
+    
+    func range(to end:Date)->ClosedRange<Int>?{
+        let comp1 = Calendar.current.dateComponents([.year], from: self)
+        let comp2 = Calendar.current.dateComponents([.year], from: end)
+        return comp1.year!...comp2.year!
+    }
+    
+    /// Returns the year and month components in a tuple
+    /// - Parameter date: Date object
+    func yearAndMonthFrom(date:Date)->(Int,Int){
+        let components = Calendar.current.dateComponents([.year,.month], from: date )
+        return (components.month! , components.year!)
+    }
+    
+    /// Gets the date at the end of the month from month and date component
+    ///     If (1,2021) passed , then will return 2021/01/31
+    /// - Parameter components: (INT,INT) - (Month, Year) integer values from yearAndMonthFrom()
+    /// - Returns: Date at the end of the month
+    static func dateFromYearMonth(components:(Int,Int))->Date?{
+        var comp = DateComponents()
+        comp.month = components.0
+        comp.year = components.1
+        
+        // Get the number of days in the month
+        let range = Calendar.current.range(of: .day, in: .month, for: Calendar.current.date(from: comp)!)
+        comp.day = range?.count
+        
+        return Calendar.current.date(from: comp)
     }
     
     /// Compute and returns the date for each week in this current month in an array format

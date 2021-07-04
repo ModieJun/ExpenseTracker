@@ -19,13 +19,25 @@ struct Mainview: View {
                         //TODO Summary Data
                         Text("Summary View")
                     }).frame(height:geo.size.height/2.5)
+                NavigationLink(
+                    destination:
+                        SettingsView(),
+                    label: {
+                        Label(
+                            title: { Text("Settings") },
+                            icon: { Image(systemName: "gearshape") })
+                })
             }//List
+            .navigationTitle(Text("Expense Tracker"))
         }//Georeader
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        Mainview()
+        Group {
+            Mainview()
+            Mainview()
+        }
     }
 }

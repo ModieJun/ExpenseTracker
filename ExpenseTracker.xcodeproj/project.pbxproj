@@ -43,6 +43,8 @@
 		FAF835F7268A0CDC00751431 /* ExpenseTracker Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FAF835D6268A0CD600751431 /* ExpenseTracker Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FAF83611268A10F200751431 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF83610268A10F200751431 /* AddExpenseView.swift */; };
 		FAF83616268A111D00751431 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF83615268A111D00751431 /* SummaryView.swift */; };
+		FAF8361E268AB84200751431 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8361D268AB84200751431 /* SettingsView.swift */; };
+		FAF83632269054F700751431 /* MonthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF83631269054F700751431 /* MonthPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,7 @@
 		FA29DB65267D92A100BFA26A /* ExpenseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseList.swift; sourceTree = "<group>"; };
 		FA756B5E26771E4C001A9E7C /* ExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseService.swift; sourceTree = "<group>"; };
 		FA95DA442674FB21006BD11C /* InputKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputKeyboard.swift; sourceTree = "<group>"; };
+		FAA557FA269172A300AB7490 /* DateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelperTests.swift; sourceTree = "<group>"; };
 		FAF835952682E1EA00751431 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		FAF8359B2684531400751431 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
 		FAF835A526845DA700751431 /* ExpenseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerTests.swift; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 		FAF835F4268A0CDA00751431 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		FAF83610268A10F200751431 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		FAF83615268A111D00751431 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		FAF8361D268AB84200751431 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FAF83631269054F700751431 /* MonthPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +259,7 @@
 				FA29DB65267D92A100BFA26A /* ExpenseList.swift */,
 				FAF835B62684C38600751431 /* CategorySelection.swift */,
 				FAF835B926857D2100751431 /* MonthYearPicker.swift */,
+				FAF83631269054F700751431 /* MonthPicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 			children = (
 				FAF835A526845DA700751431 /* ExpenseTrackerTests.swift */,
 				FAF835A726845DA700751431 /* Info.plist */,
+				FAA557FA269172A300AB7490 /* DateHelperTests.swift */,
 			);
 			path = ExpenseTrackerTests;
 			sourceTree = "<group>";
@@ -279,6 +286,7 @@
 		FAF835E3268A0CD900751431 /* ExpenseTracker Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				FAF83622268AB8D000751431 /* Components */,
 				FAF83604268A0DAA00751431 /* ViewModel */,
 				FAF83603268A0DA300751431 /* View */,
 				FAF835E4268A0CD900751431 /* ExpenseTrackerApp.swift */,
@@ -307,6 +315,7 @@
 			children = (
 				FAF83610268A10F200751431 /* AddExpenseView.swift */,
 				FAF83615268A111D00751431 /* SummaryView.swift */,
+				FAF8361D268AB84200751431 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,6 +325,13 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FAF83622268AB8D000751431 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +476,7 @@
 				FA1739E82674A26E00C73416 /* AddExpenseView.swift in Sources */,
 				FA1739ED2674A35900C73416 /* ExpenseTracker.xcdatamodeld in Sources */,
 				FA29DB5C267C761600BFA26A /* CategoryService.swift in Sources */,
+				FAF83632269054F700751431 /* MonthPicker.swift in Sources */,
 				FAF835BA26857D2100751431 /* MonthYearPicker.swift in Sources */,
 				FAF835B72684C38600751431 /* CategorySelection.swift in Sources */,
 				FA29DB62267CCF9800BFA26A /* AppDelegate.swift in Sources */,
@@ -484,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF835E9268A0CD900751431 /* NotificationController.swift in Sources */,
+				FAF8361E268AB84200751431 /* SettingsView.swift in Sources */,
 				FAF83616268A111D00751431 /* SummaryView.swift in Sources */,
 				FAF835E7268A0CD900751431 /* MainView.swift in Sources */,
 				FAF835ED268A0CD900751431 /* ComplicationController.swift in Sources */,
@@ -643,7 +661,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.junjie.ExpenseTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -665,7 +683,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.junjie.ExpenseTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
