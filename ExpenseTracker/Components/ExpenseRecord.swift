@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ExpenseRecord: View {
     let expense:Expense;
-    
-    
+
     var body: some View {
             Button(action: {
                 print("\(String(format: "%.2f", expense.amount)) pressed")

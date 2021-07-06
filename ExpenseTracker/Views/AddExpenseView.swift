@@ -12,6 +12,7 @@ import PartialSheet
 struct AddExpenseView: View {
     @State var isCategorySelected: Bool = false;
     @State var isToastPresented=false;
+    @State var showOverlay = false
     @Binding var isPresented:Bool;
     
     @State var selectedCategory:Category? = nil
@@ -22,50 +23,87 @@ struct AddExpenseView: View {
     
     var body: some View {
         NavigationView{
-            VStack{
-                ScrollView{
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), content: {
-                        ForEach(categoryViewModel.allCategories,id:\.self,content:{
-                            ele in
-                                Button{
-                                    withAnimation(.easeIn(duration:1), {
-                                        self.select(category: ele)
-                                    })
-                                }
-                                label:{
-                                    CategorySelection(categoryName: ele.name!, selected: selectedCategory?.name?.elementsEqual(ele.name!) ?? false )
-                                }
-                        }) //For Each
-                    }).padding(.top,25) // Lazy Grid
-                }//ScrollView
-                .padding(.horizontal, 20)
+            ZStack{
+                VStack{
+                    ScrollView{
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), content: {
+                            ForEach(categoryViewModel.allCategories,id:\.self,content:{
+                                ele in
+                                    Button{
+                                        withAnimation(.easeIn(duration:1), {
+                                            self.select(category: ele)
+                                        })
+                                    }
+                                    label:{
+                                        CategorySelection(categoryName: ele.name!, selected: selectedCategory?.name?.elementsEqual(ele.name!) ?? false )
+                                    }
+                            }) //For Each
+                        }).padding(.top,25) // Lazy Grid
+                    }//ScrollView
+                    .padding(.horizontal, 20)
+                    
+                    //MARK: Category selected
+                    if(self.isCategorySelected){
+                        VStack(alignment: .trailing, spacing:0){
+                            Button(action: {
+                                showOverlay.toggle()
+                            }, label: {
+                                Text(addExpenseViewModel.date,style: .date)
+                            })
+                            HStack{
+                                Text("\((addExpenseViewModel.category?.name)!)")
+                                    .frame(maxWidth: .infinity,alignment: .center)
+                                    .font(.body)
+                                Text("$\(addExpenseViewModel.amount)")
+                                    .frame(maxWidth:.infinity,alignment: .center)
+                            }.frame(maxWidth: .infinity)
+                            .padding()
+                            InputKeyboard(amount: $addExpenseViewModel.amount,action: self.addExpense)
+                        }.toast(isPresenting: self.$isToastPresented, alert: {
+                            AlertToast(type: .loading, title: "Adding Expense....")
+                        })
+                    } // Category Selected
+                }//VStack
                 
-                //MARK: Category selected
-                if(self.isCategorySelected){
-                    VStack(alignment: .trailing, spacing:0){
-                        DatePickerSheet(date: $addExpenseViewModel.date)
-                        HStack{
-                            Text("\((addExpenseViewModel.category?.name)!)")
-                                .frame(maxWidth: .infinity,alignment: .center)
-                                .font(.body)
-                            Text("$\(addExpenseViewModel.amount)")
-                                .frame(maxWidth:.infinity,alignment: .center)
-                        }.frame(maxWidth: .infinity)
-                        .padding()
-                        InputKeyboard(amount: $addExpenseViewModel.amount,action: self.addExpense)
-                    }.toast(isPresenting: self.$isToastPresented, alert: {
-                        AlertToast(type: .loading, title: "Adding Expense....")
-                    })
-                } // Category Selected
-                
-            }//VStack
-            .ignoresSafeArea(.container, edges: .bottom)
+                //MARK: Date selection
+                VStack{
+                    Spacer()
+                    VStack{
+                        DatePicker(
+                            "Date",
+                            selection:$addExpenseViewModel.date,
+                            in: ...Date() ,
+                            displayedComponents: [.date]
+                        ).datePickerStyle(WheelDatePickerStyle())
+                        Button(action: {
+                            self.showOverlay.toggle()
+                        }, label: {
+                            Text("Close")
+                                .padding()
+                                .padding(.horizontal,100)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(20.0)
+                        })
+                    }
+                    .padding()
+                    .padding(.vertical,20)
+                    .background(Color.white)
+                }//VStack
+                .offset(y:self.showOverlay ? 0 : UIScreen.main.bounds.height)
+                .background(self.showOverlay ? Color.black
+                                .opacity(0.3): Color.clear)
+                .onTapGesture {
+                    //Tapping on side the
+                    self.showOverlay.toggle()
+                }
+            }//Zstack
+            .edgesIgnoringSafeArea(.bottom)
             .navigationBarItems(trailing:Button("Close", action: {print("Close");self.isPresented.toggle()})
             )
             .navigationTitle("Add Expense")
             .navigationBarTitleDisplayMode(.inline)
         }//NavigationView
-        .ignoresSafeArea(.container, edges: .bottom)
         .addPartialSheet()
     }
     
@@ -93,29 +131,6 @@ struct AddExpenseView: View {
                 self.isToastPresented.toggle()
                 self.isPresented.toggle()
             }
-        })
-    }
-}
-
-struct DatePickerSheet:View {
-    @Binding var date:Date
-    @State private var datePickerPresented:Bool = false;
-    
-    
-    var body: some View{
-        Button{
-            print("Present Dte")
-            self.datePickerPresented.toggle()
-        }
-        label:{
-            Text(date,style: .date)
-        }.sheet(isPresented: $datePickerPresented, content: {
-            DatePicker(
-                "Date",
-                selection:$date,
-                in: ...Date() ,
-                displayedComponents: [.date]
-            ).datePickerStyle(WheelDatePickerStyle())
         })
     }
 }

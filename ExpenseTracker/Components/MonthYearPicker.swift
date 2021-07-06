@@ -63,6 +63,7 @@ struct MonthYearPickerView: View {
                     .padding(.horizontal,100)
                     .background(Color.green)
                     .foregroundColor(.white)
+                    .cornerRadius(20.0)
             })
         }//Vstack
         .padding(.vertical,20)
