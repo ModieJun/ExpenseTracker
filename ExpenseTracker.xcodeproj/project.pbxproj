@@ -25,6 +25,7 @@
 		FA756B532676FADA001A9E7C /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = FA756B522676FADA001A9E7C /* AlertToast */; };
 		FA756B5F26771E4C001A9E7C /* ExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA756B5E26771E4C001A9E7C /* ExpenseService.swift */; };
 		FA95DA452674FB21006BD11C /* InputKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95DA442674FB21006BD11C /* InputKeyboard.swift */; };
+		FAA557FF2692A21600AB7490 /* WatchKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA557FE2692A21600AB7490 /* WatchKeyboard.swift */; };
 		FAF835962682E1EA00751431 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF835952682E1EA00751431 /* DateHelpers.swift */; };
 		FAF8359C2684531400751431 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8359B2684531400751431 /* AddExpenseViewModel.swift */; };
 		FAF835B22684611F00751431 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = FAF835B12684611F00751431 /* PartialSheet */; };
@@ -44,7 +45,6 @@
 		FAF83611268A10F200751431 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF83610268A10F200751431 /* AddExpenseView.swift */; };
 		FAF83616268A111D00751431 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF83615268A111D00751431 /* SummaryView.swift */; };
 		FAF8361E268AB84200751431 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8361D268AB84200751431 /* SettingsView.swift */; };
-		FAF83632269054F700751431 /* MonthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF83631269054F700751431 /* MonthPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +110,7 @@
 		FA756B5E26771E4C001A9E7C /* ExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseService.swift; sourceTree = "<group>"; };
 		FA95DA442674FB21006BD11C /* InputKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputKeyboard.swift; sourceTree = "<group>"; };
 		FAA557FA269172A300AB7490 /* DateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelperTests.swift; sourceTree = "<group>"; };
+		FAA557FE2692A21600AB7490 /* WatchKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKeyboard.swift; sourceTree = "<group>"; };
 		FAF835952682E1EA00751431 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		FAF8359B2684531400751431 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
 		FAF835A526845DA700751431 /* ExpenseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerTests.swift; sourceTree = "<group>"; };
@@ -133,7 +134,6 @@
 		FAF83610268A10F200751431 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		FAF83615268A111D00751431 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		FAF8361D268AB84200751431 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		FAF83631269054F700751431 /* MonthPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,7 +259,6 @@
 				FA29DB65267D92A100BFA26A /* ExpenseList.swift */,
 				FAF835B62684C38600751431 /* CategorySelection.swift */,
 				FAF835B926857D2100751431 /* MonthYearPicker.swift */,
-				FAF83631269054F700751431 /* MonthPicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -330,6 +329,7 @@
 		FAF83622268AB8D000751431 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FAA557FE2692A21600AB7490 /* WatchKeyboard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -476,7 +476,6 @@
 				FA1739E82674A26E00C73416 /* AddExpenseView.swift in Sources */,
 				FA1739ED2674A35900C73416 /* ExpenseTracker.xcdatamodeld in Sources */,
 				FA29DB5C267C761600BFA26A /* CategoryService.swift in Sources */,
-				FAF83632269054F700751431 /* MonthPicker.swift in Sources */,
 				FAF835BA26857D2100751431 /* MonthYearPicker.swift in Sources */,
 				FAF835B72684C38600751431 /* CategorySelection.swift in Sources */,
 				FA29DB62267CCF9800BFA26A /* AppDelegate.swift in Sources */,
@@ -505,6 +504,7 @@
 				FAF83616268A111D00751431 /* SummaryView.swift in Sources */,
 				FAF835E7268A0CD900751431 /* MainView.swift in Sources */,
 				FAF835ED268A0CD900751431 /* ComplicationController.swift in Sources */,
+				FAA557FF2692A21600AB7490 /* WatchKeyboard.swift in Sources */,
 				FAF83611268A10F200751431 /* AddExpenseView.swift in Sources */,
 				FAF835E5268A0CD900751431 /* ExpenseTrackerApp.swift in Sources */,
 				FAF835EB268A0CD900751431 /* NotificationView.swift in Sources */,
