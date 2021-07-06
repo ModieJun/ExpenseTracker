@@ -31,37 +31,43 @@ struct MonthYearPickerView: View {
    }
     
     var body: some View{
-        NavigationView{
-            GeometryReader { geometry in
-                VStack(alignment:.center){
-                HStack(alignment:.center,spacing:20){
+        VStack(alignment:.center){
+            HStack{
+                Text("Select Year and Month").bold()
+                
+            }.padding(.top,10)
+            HStack(alignment:.center){
+                GeometryReader { geometry in
                     Picker("Year",selection: self.$selectedYear) {
                         ForEach(years, id: \.self) {
                             Text(String($0))
                         }
-                    }.frame(width: 150, height: 100, alignment: .center)
+                    }.frame(width:geometry.size.width,height: 100, alignment: .center)
                     .clipped()
+                }
                     
-        
+                GeometryReader { geometry in
                     Picker(selection: self.$selectedMonth,label:Text("Month"),content: {
                         ForEach(1..<13){ value in
                             Text("\(value)")
                         }
-                    }).frame(width: 150, height: 100, alignment: .center)
+                    })
+                    .frame(width:geometry.size.width,height: 100, alignment: .center)
                     .clipped()
-                    
-                }//Hstack
-                Button(action: {self.action(selectedMonth+1,selectedYear)}, label: {
-                    Text("Apply").padding()
-                        .padding(.horizontal,100)
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                })
-                }//Vstack
-            }//geometry
-            .navigationTitle("Select Month & Year")
-            .navigationBarTitleDisplayMode(.inline)
-        }
+                }
+            }//Hstack
+            .frame(height:100)
+            
+            Button(action: {self.action(selectedMonth+1,selectedYear)}, label: {
+                Text("Apply").padding()
+                    .padding(.horizontal,100)
+                    .background(Color.green)
+                    .foregroundColor(.white)
+            })
+        }//Vstack
+        .padding(.vertical,20)
+        .background(Color.white)
+        .animation(.none)
     }
 }
 

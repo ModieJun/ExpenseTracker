@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import CoreData
 
+
 class CategoryService: NSObject {
     var allCategories = CurrentValueSubject<[Category],Never>([])
     var availabeCategories = CurrentValueSubject<[Category],Never>([])
@@ -41,11 +42,17 @@ class CategoryService: NSObject {
         }catch{
             NSLog("Error: Could not fetch Categories in core data")
         }
+        insertDefaultCategories()
     }
     
     // Only should be invoked if there is nothing
     func insertDefaultCategories(){
-        //default category inserter when the container is created 
+        //default category inserter when the container is created
+        let store = UserDefaults.standard
+        let key = "categoryInserted"
+        if store.bool(forKey: key){
+            return
+        }
         let defaultCategories = [
             "Food","Transportation","Entertainment","Health","Housing"
         ];
@@ -58,6 +65,7 @@ class CategoryService: NSObject {
             
             self.saveContext()
         }
+        store.setValue(true, forKey: key)
     }
     /**
             Function is uses to filtere and remove duplicate categories inside core data

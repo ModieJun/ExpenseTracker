@@ -33,8 +33,8 @@ struct DailyExpenseView: View {
                     HStack{
                         Button{
                             print("present month Picker")
-                            self.isMonthPickerPresented.toggle()
-//                            self.showOverlay.toggle()
+//                            self.isMonthPickerPresented.toggle()
+                            self.showOverlay.toggle()
                         }
                         label: {
                             HStack(alignment:.center){
@@ -75,29 +75,33 @@ struct DailyExpenseView: View {
                             })//Section
                         }//For each key
                     }// List
+                }//Vstack
+                
+                
+                //MARK: Overlay Date input
+                VStack{
+                    Spacer()
+                    MonthYearPickerView(date: self.selectedMonth, action: {
+                        month, year  in
+                        self.selectedMonth = Date.dateFromYearMonth(components: (month,year))!
+                        self.showOverlay.toggle()
+                    })
+                    .edgesIgnoringSafeArea(.bottom)
+                    .offset(y:self.showOverlay ? 0 : UIScreen.main.bounds.height)
+                    //offset from screen
+                }//VStack
+                .background(self.showOverlay ? Color.black
+                                .opacity(0.3): Color.clear)
+                .onTapGesture {
+                    //Tapping on side the
+                    self.showOverlay.toggle()
                 }
-            }
-            .padding(.bottom,100)
-        }
-        .edgesIgnoringSafeArea(.all)
-//        .blur(radius: showOverlay ? 6 : 0)
-//        .overlay(
-//            ZStack {
-//                if self.showOverlay {
-//                    Color.black.opacity(0.25)
-//                        .edgesIgnoringSafeArea(.all)
-//                        .onTapGesture {
-//                            withAnimation {
-//                                self.showOverlay.toggle()
-//                            }
-//                        }
-//                    MonthYearPickerView(date: self.selectedMonth, action: {
-//                        month, year  in
-//                        self.selectedMonth = Date.dateFromYearMonth(components: (month,year))!
-//                        self.showOverlay.toggle()
-//                    })
-//                }
-//            })
+                
+            }//ZStack
+            .padding(.bottom,95)
+            .animation(.default)
+        }//Geometry
+        .edgesIgnoringSafeArea(.bottom)
     }
     
     private func reloadData(){
